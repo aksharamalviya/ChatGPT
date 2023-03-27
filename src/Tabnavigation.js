@@ -11,7 +11,6 @@ const Tab = createBottomTabNavigator();
 
 const Tabnavigation = () => {
   return (
-    <View style={{ flex: 1 }}>
       <Tab.Navigator
         screenOptions={{
           activeTintColor: "#000",
@@ -195,7 +194,6 @@ const Tabnavigation = () => {
           component={Profile}
         />
       </Tab.Navigator>
-    </View>
   );
 };
 

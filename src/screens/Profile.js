@@ -30,7 +30,6 @@
 //     });
 //   };
 
-
 //   let deleteUser = id => {
 //     db.transaction(tx => {
 //       tx.executeSql(
@@ -60,7 +59,6 @@
 //     });
 //   };
 
-
 //   const updateUser = () => {
 //     db.transaction(tx => {
 //       tx.executeSql(
@@ -76,10 +74,10 @@
 //                 {
 //                   text: 'Ok',
 //                   onPress: () => navigation.navigate('Chatting'),
-                
+
 //                 },
 //               ],
-              
+
 //               {cancelable: false},
 //             );
 //           } else Alert.alert('Updation Failed');
@@ -97,11 +95,11 @@
 //             <View style={styles.userItem}>
 //               <View>
 //               <Text style={styles.itemText}>{'Name: ' + item.name}</Text>
-              
+
 //               <Text style={styles.itemText}>{'Address: ' + item.address}</Text>
 //               </View>
 //               <TouchableOpacity  onPress={()=> updateUser()}>
-             
+
 //                   <Image
 //                     source={require('../assets/Images/editing.png')}
 //                     style={{height:20,width:20}}
@@ -116,8 +114,6 @@
 //                     style={{height:20,width:20}}
 //                   />
 //                 </TouchableOpacity>
-            
-
 
 //             </View>
 //           );
@@ -145,7 +141,6 @@
 //   },
 // })
 
-
 import {
   View,
   Text,
@@ -166,16 +161,19 @@ const Profile = () => {
   useEffect(() => {
     getData();
   }, [isFocused]);
+
   const getData = () => {
     db.transaction(tx => {
       tx.executeSql('SELECT * FROM table_user', [], (tx, results) => {
         var temp = [];
+        console.log('23214', results.rows);
         for (let i = 0; i < results.rows.length; ++i)
           temp.push(results.rows.item(i));
         setUserList(temp);
       });
     });
   };
+
   let deleteUser = id => {
     db.transaction(tx => {
       tx.executeSql(
@@ -184,7 +182,6 @@ const Profile = () => {
         (tx, results) => {
           console.log('Results', results.rowsAffected);
           if (results.rowsAffected > 0) {
-            
             Alert.alert(
               'Success',
               'User deleted successfully',
@@ -213,19 +210,20 @@ const Profile = () => {
           return (
             <TouchableOpacity style={styles.userItem}>
               <View>
-              <Text style={styles.itemText}>{'Name: ' + item.name}</Text>
-             
-              <Text style={styles.itemText}>{'Address: ' + item.address}</Text>
+                <Text style={styles.itemText}>{'Name: ' + item.name}</Text>
+
+                <Text style={styles.itemText}>
+                  {'Address: ' + item.address}
+                </Text>
               </View>
               <View style={styles.belowView}>
-                
                 <TouchableOpacity
                   onPress={() => {
                     deleteUser(item.user_id);
                   }}>
                   <Image
                     source={require('../assets/Images/delete.png')}
-                    style={{height:20,width:20}}
+                    style={{height: 20, width: 20}}
                   />
                 </TouchableOpacity>
               </View>
@@ -233,7 +231,6 @@ const Profile = () => {
           );
         }}
       />
-      
     </View>
   );
 };
@@ -262,10 +259,10 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#c79de0',
     padding: 10,
-    flexDirection:'row',
-    alignItems:'center',
-    marginVertical:10,
-    justifyContent:'space-between'
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
+    justifyContent: 'space-between',
   },
   itemText: {
     fontSize: 15,

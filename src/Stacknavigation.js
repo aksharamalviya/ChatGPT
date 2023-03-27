@@ -3,8 +3,6 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Tabnavigation from "./Tabnavigation";
 import Home from "./screens/Home";
-import Chatting from "./screens/Chatting";
-import Drawernavigation from "./Drawernavigation";
 import { enableScreens } from "react-native-screens";
 import Dietplan from "./screens/Dietplan";
 import Contentwriting from "./screens/Contentwriting";
